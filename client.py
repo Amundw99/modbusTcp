@@ -4,7 +4,7 @@ import time
 global counter
 # Modbus-serverens adresse og port
 server_ip = "10.0.0.22"
-server_port = 5020
+server_port = 5021
 
 # Adressen til det holderegisteret du vil lese
 hold_register_address = 0
@@ -18,11 +18,7 @@ def read_hold_register():
     # Åpne en forbindelse til Modbus-serveren
     client.connect()
     client.write_registers(hold_register_address, values=444, count=1, unit=0)
-    time.sleep(4)
-    client.write_registers(hold_register_address, values=666, count=1, unit=0)
-    time.sleep(4)
-    client.write_registers(hold_register_address, values=888, count=1, unit=0)
-    time.sleep(4)
+    time.sleep(2)
     try:
         while True:
             # Les verdien fra holderegisteret
