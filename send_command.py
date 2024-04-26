@@ -5,18 +5,13 @@ import time
 
 mqtt_broker_address = "10.0.0.22"
 mqtt_broker_port = 1883
-
 mqtt_topic = 'mrfdatacmd'
 
 def publish_mqtt_message (json_data):
     client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-
     client.connect(mqtt_broker_address, mqtt_broker_port)
-
     json_str = json.dumps (json_data)
-
     client.publish (mqtt_topic, json_str)
-
     client.disconnect()
 
 
@@ -50,7 +45,6 @@ try:
         publish_mqtt_message(data_to_publish_off)
         client.connect()
         client.write_registers(1, values=0, count=1, unit=0)
-        print("eee")
         time.sleep(3)
 except Exception as e:
     print("Feil:", e)
