@@ -31,4 +31,4 @@ context = ModbusServerContext(slaves=store, single=True)
 StartTcpServer(context=context, address=(modbus_server_address, modbus_server_port))
 
 # Start lytting for meldinger
-client.loop_forever()
+#lient.loop_forever()

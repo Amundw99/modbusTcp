@@ -1,22 +1,25 @@
-from pyModbusTCP.server import ModbusServer, DataBank
+from pymodbus.server.sync import StartSerialServer
+from pymodbus.datastore import ModbusSequentialDataBlock
+from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
 
-# Definer Modbus TCP-serverens adresse og port
-modbus_server_address = "10.0.0.22"
-modbus_server_port = 5021
+# Modbus-server konfigurasjon
+serial_port = "/dev/ttyUSB1"  # Angi den serielle porten din
+baudrate = 9600
+parity = "N"
+stopbits = 1
+bytesize = 8
 
-# Opprett en Modbus TCP-server
-server = ModbusServer(host=modbus_server_address, port=modbus_server_port)
+hold_register_address = 0
+nreg = 20
 
-# Start serveren
-server.start()
+# Initialize Modbus datastore
+store = ModbusSlaveContext(
+    di=ModbusSequentialDataBlock(0, [22] * nreg),
+    co=ModbusSequentialDataBlock(0, [44] * nreg),
+    hr=ModbusSequentialDataBlock(hold_register_address, [333] * nreg),
+    ir=ModbusSequentialDataBlock(0, [55] * nreg))
+context = ModbusServerContext(slaves=store, single=True)
 
-# Konfigurer noen eksempelregistre
-DataBank.set_words(0, [10, 20, 30, 40])
-
-try:
-    while True:
-        # Gjør noe annet mens serveren kjører
-        pass
-finally:
-    # Stopp serveren når du er ferdig
-    server.stop()
+# Start Modbus server
+StartSerialServer(context=context, port=serial_port, baudrate=baudrate,
+                  parity=parity, stopbits=stopbits, bytesize=bytesize)

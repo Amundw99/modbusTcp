@@ -28,7 +28,7 @@ def on_message(client, userdata, msg):
             client = ModbusTcpClient(server_ip, server_port)
             # Åpne en forbindelse til Modbus-serveren
             client.connect()
-            client.write_registers(hold_register_address, values=han_port_value*200, count=1, unit=0)
+            client.write_registers(hold_register_address, values=han_port_value*20, count=1, unit=0)
     except Exception as e:
         print("Feil:", e)
 
