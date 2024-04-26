@@ -46,9 +46,7 @@ try:
         publish_mqtt_message(data_to_publish_on)
         client.connect()
         client.write_registers(1, values=1, count=1, unit=0)
-
         time.sleep(3)
-
         publish_mqtt_message(data_to_publish_off)
         client.connect()
         client.write_registers(1, values=0, count=1, unit=0)
