@@ -11,7 +11,7 @@ from pymodbus.server.sync import StartTcpServer
 
 
 # Modbus-server konfigurasjon
-modbus_server_address = "10.0.0.22"
+modbus_server_address = "10.0.0.26"
 modbus_server_port = 5021
 hold_register_address = 0  # Adressen til holderegisteret du vil oppdatere
 

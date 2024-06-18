@@ -3,7 +3,7 @@ import time
 
 global counter
 # Modbus-serverens adresse og port
-server_ip = "10.0.0.22"
+server_ip = "10.0.0.28"
 server_port = 5021
 
 # Adressen til det holderegisteret du vil lese
