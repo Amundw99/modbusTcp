@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 
 
-mqtt_broker_address = "10.0.0.26"
+mqtt_broker_address = "10.0.0.22"
 mqtt_broker_port = 1883
 mqtt_topic = 'mrfdatacmd'
 
@@ -36,7 +36,7 @@ data_to_publish_off = {
   "returnAck": True
 }
 
-client = ModbusTcpClient("10.0.0.26", 5021)
+client = ModbusTcpClient("10.0.0.22", 5021)
 # Åpne en forbindelse til Modbus-serveren
 #client.connect()
 #client.write_registers(1, values=1, count=1, unit=0)
